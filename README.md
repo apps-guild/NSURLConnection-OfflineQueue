@@ -3,7 +3,9 @@ NSURLConnection+OfflineQueue
 
 A simple category on NSURLConnection with a persistent/offline queue of pure POST work.
 
-I've written several iOS systems for managing async downloading of assets, async hitting of web-services for data &  analytics, and other bandwidth-throttling mechanisms so when it came time to handle scoring and analytics for [TILE](http://thetilegame.com) I decided to rewrite several old systems to use proper GCD queues and to handle WiFi vs WAN/cellular and set myself up for a common simple system. At this point this one is written to handle sending URL-only data to an analytics server in a single domain using a throttled connection, geared to sustain/reuse a single HTTP/1.1 connection but to limit bandwidth to no more than `RATE_PER_MINUTE_WIFI` calls/minute on a WiFi connection and no more than `RATE_PER_MINUTE_WWAN` calls/minue on WAN/cellular.
+I've written several iOS systems for managing async downloading of assets, async hitting of web-services for data &  analytics, and other bandwidth-throttling mechanisms to actually respect cellular settings (no, `allowsCellularAccess=NO` does not just work) so when it came time to handle scoring and analytics for [TILE](http://thetilegame.com) I decided to rewrite several old systems to use proper GCD queues and to handle WiFi vs WAN/cellular and set myself up for a common simple system.
+
+This is written to handle sending URL-only data to an analytics server in a single domain using a throttled connection, geared to sustain/reuse a single HTTP/1.1 connection but to limit bandwidth to no more than `RATE_PER_MINUTE_WIFI` calls/minute on a WiFi connection and no more than `RATE_PER_MINUTE_WWAN` calls/minue on WAN/cellular.
 
 Examples of Use
 ===============
